@@ -1,11 +1,13 @@
 package fitness;
 
+import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
@@ -45,9 +47,7 @@ public class Main {
 
         Aboniment[] aboniments = new Aboniment[20];
 
-        int n1 = 0;
-        int n2 = 0;
-        int n3 = 0;
+
 
         for (int i = 0; i < people.length; i++) {
           aboniments[i] = new Aboniment(types[(int)(Math.random()*types.length)], people[i]);
@@ -55,13 +55,13 @@ public class Main {
                 LocalDate startAboniment = LocalDate.of(2019, (int)(Math.random()*12+1), (int)(Math.random()*27+1));
                 aboniments[i].setStart(startAboniment);
                 aboniments[i].setEnd(startAboniment.plusMonths(1));
-                n1++;
+                //n1++;
             }
             if (aboniments[i].type.equals(types[1])){
                 LocalDate startAboniment = LocalDate.of(2019, (int)(Math.random()*12+1), (int)(Math.random()*27+1));
                 aboniments[i].setStart(startAboniment);
                 aboniments[i].setEnd(startAboniment.plusDays(1));
-                n2++;
+                //n2++;
             }
 
             System.out.println(aboniments[i].toString());
@@ -82,7 +82,7 @@ public class Main {
 
         }*/
 
-        Visit[] visits = new Visit[30];
+        Visit[] visits = new Visit[300];
         for (int i = 0; i < visits.length; i++) {
             LocalDate visitDate = LocalDate.of(2019, (int) (Math.random() * 12 + 1), (int) (Math.random() * 27 + 1));
             LocalTime visitTime = LocalTime.of((int) (Math.random() * 13), (int) (Math.random() * 60));
@@ -92,7 +92,47 @@ public class Main {
 
         }
 
+        int nn1 = 0;
+        int nn2 = 0;
+        int nn3 = 0;
 
+        for (int i = 0; i < visits.length ; i++) {
+            if(visits[i].nn > 0 && visits[i].zone.equals(zones[0])) nn1++;
+            else if(visits[i].nn > 0 && visits[i].zone.equals(zones[1])) nn2++;
+            else if(visits[i].nn > 0 && visits[i].zone.equals(zones[2])) nn3++;
+
+        }
+
+        String[] listGym = new String[nn1];
+        String[] listGr = new String[nn2];
+        String[] listSw = new String[nn3];
+
+        nn1 = 0;
+        nn2 = 0;
+        nn3 = 0;
+
+        for (int i = 0; i < visits.length ; i++) {
+            if(visits[i].nn > 0 && visits[i].zone.equals(zones[0])) {
+                listGym[nn1] = visits[i].aboniment.people.surname + " " + visits[i].aboniment.people.name;
+                nn1++;
+            }
+            else if(visits[i].nn > 0 && visits[i].zone.equals(zones[1])) {
+                listGr[nn2] = visits[i].aboniment.people.surname + " " + visits[i].aboniment.people.name;
+                nn2++;
+            }
+            else if(visits[i].nn > 0 && visits[i].zone.equals(zones[2])) {
+                listSw[nn3] = visits[i].aboniment.people.surname + " " + visits[i].aboniment.people.name;
+                nn3++;
+            }
+
+        }
+        Arrays.sort(listGym);
+        Arrays.sort(listSw);
+        Arrays.sort(listGr);
+
+        System.out.println("Посетители тренажерного зала: " + Arrays.toString(listGym));
+        System.out.println("Посетители бассеина: " + Arrays.toString(listSw));
+        System.out.println("Посетители групповых занятий: " + Arrays.toString(listGr));
 
     }
 }
