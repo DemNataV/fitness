@@ -1,12 +1,8 @@
 package fitness;
 
-import java.lang.reflect.Array;
+
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.Month;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
 
 public class Main {
@@ -70,17 +66,6 @@ public class Main {
         Club club = new Club();
         club.addAboniments(aboniments);
 
-       /* String[][] listSw = new String[club.aboniments.length-n2][2];
-        String[][] listGroup = new String[n1+n2][2];
-        String[][] listGym = new String[club.aboniments.length][2];
-
-        for (int i = 0; i < club.aboniments.length ; i++) {
-            if (club.aboniments[i].equals(types[0])){
-
-
-            }
-
-        }*/
 
         Visit[] visits = new Visit[300];
         for (int i = 0; i < visits.length; i++) {

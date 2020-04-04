@@ -1,11 +1,9 @@
 package fitness;
 
-import java.time.LocalDateTime;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.Month;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
+
 
 public class Visit implements Zone{
     LocalDate visitDate;
