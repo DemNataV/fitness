@@ -1,10 +1,11 @@
-package fitness;
+package fitness1;
 
+
+import fitness.People;
 
 import java.time.LocalDate;
 
 public class Aboniment {
-
     public String type; // = {"Разовый", "Дневной", "Полный/Месячный"};
     LocalDate start;
     LocalDate end;

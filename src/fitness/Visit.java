@@ -5,9 +5,11 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 
-public class Visit implements Zone{
+public class Visit{
     LocalDate visitDate;
     LocalTime visitTime;
+
+    LocalTime leaveTime;
     String zone;
     Aboniment aboniment;
     int nn;
@@ -61,21 +63,20 @@ public class Visit implements Zone{
         this.nn = nn;
     }
 
-    void visitZone(Aboniment aboniment, Visit visit){
+    public LocalTime getLeaveTime() {
+        return leaveTime;
+    }
 
-            if (zone.equalsIgnoreCase("бассейн")) swimmingPool(aboniment, visit);
-            else if (zone.equalsIgnoreCase("групповые занятия")) group(aboniment, visit);
-            else  if (zone.equalsIgnoreCase("тренажерный зал")) {
+    public void setLeaveTime(LocalTime leaveTime) {
+        this.leaveTime = leaveTime;
+    }
 
-                LocalTime startGym = LocalTime.of(07, 59);
-                LocalTime endGym = LocalTime.of(22, 01);
-                if (visitTime.isAfter(startGym) && visitTime.isBefore(endGym)) gym(aboniment, visit);
-                else System.out.println("Тренажерный зал закрыт");
-            }
+    void visitZone(Aboniment aboniment, Visit visit, Counter counter){
 
-
-        //}
-       // else System.out.println("Срок действия абонемента истек или не начал действовать");
+            if (zone.equalsIgnoreCase("бассейн") && counter.sPCCount < 21) counter.swimmingPool(aboniment, visit);
+            else if (zone.equalsIgnoreCase("групповые занятия") && counter.groupCount < 21) counter.group(aboniment, visit);
+            else  if (zone.equalsIgnoreCase("тренажерный зал") && counter.gymCount < 21) counter.gym(aboniment, visit);
+            else System.out.println("Лимит по количеству людей данной зоны исчерпан");
 
     };
 }

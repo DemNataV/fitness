@@ -67,47 +67,68 @@ public class Main {
         club.addAboniments(aboniments);
 
 
-        Visit[] visits = new Visit[300];
+        Visit[][] visits = new Visit[365][(int) (Math.random() *50)];
+        LocalDate visitDateVs = LocalDate.of(2019, 1, 1);
+        LocalDate visitDate;
         for (int i = 0; i < visits.length; i++) {
-            LocalDate visitDate = LocalDate.of(2019, (int) (Math.random() * 12 + 1), (int) (Math.random() * 27 + 1));
-            LocalTime visitTime = LocalTime.of((int) (Math.random() * 13), (int) (Math.random() * 60));
-            visits[i] = new Visit(visitDate, visitTime, zones[(int) (Math.random() * zones.length)], club.aboniments[(int) (Math.random() * club.aboniments.length)]);
 
-            club.visitClub(visits[i]);
+            Counter counter = new Counter();
+
+            counter.setGroupCount(0);
+            counter.setGymCount(0);
+            counter.setSPCCount(0);
+
+            visitDate = visitDateVs.plusDays(i);
+            for (int j = 0; j < visits[i].length; j++) {
+
+
+                LocalTime visitTime = LocalTime.of((int) (Math.random() * 13), (int) (Math.random() * 60));
+                visits[i][j] = new Visit(visitDate, visitTime, zones[(int) (Math.random() * zones.length)], club.aboniments[(int) (Math.random() * club.aboniments.length)]);
+
+                club.visitClub(visits[i][j], counter);
+            }
 
         }
 
-        int nn1 = 0;
-        int nn2 = 0;
-        int nn3 = 0;
+        int[] nn1 = new  int[visits.length];
+        int[] nn2 = new  int[visits.length];
+        int[] nn3 = new  int[visits.length];
 
         for (int i = 0; i < visits.length ; i++) {
-            if(visits[i].nn > 0 && visits[i].zone.equals(zones[0])) nn1++;
-            else if(visits[i].nn > 0 && visits[i].zone.equals(zones[1])) nn2++;
-            else if(visits[i].nn > 0 && visits[i].zone.equals(zones[2])) nn3++;
+            for (int j = 0; j < visits[i].length; j++) {
+                if (visits[i][j].nn > 0 && visits[i][j].zone.equals(zones[0])) nn1[i]++;
+                else if (visits[i][j].nn > 0 && visits[i][j].zone.equals(zones[1])) nn2[i]++;
+                else if (visits[i][j].nn > 0 && visits[i][j].zone.equals(zones[2])) nn3[i]++;
+            }
 
         }
 
-        String[] listGym = new String[nn1];
-        String[] listGr = new String[nn2];
-        String[] listSw = new String[nn3];
+  /*      for (int i = 0; i < visits.length ; i++) {
 
-        nn1 = 0;
-        nn2 = 0;
-        nn3 = 0;
+            String[][] listGym = new String[visits.length][nn1[i]];
+            String[][] listGr = new String[visits.length][nn2[i]];
+            String[][] listSw = new String[visits.length][nn3[i]];
+        }
+
+
 
         for (int i = 0; i < visits.length ; i++) {
-            if(visits[i].nn > 0 && visits[i].zone.equals(zones[0])) {
-                listGym[nn1] = visits[i].aboniment.people.surname + " " + visits[i].aboniment.people.name;
-                nn1++;
-            }
-            else if(visits[i].nn > 0 && visits[i].zone.equals(zones[1])) {
-                listGr[nn2] = visits[i].aboniment.people.surname + " " + visits[i].aboniment.people.name;
-                nn2++;
-            }
-            else if(visits[i].nn > 0 && visits[i].zone.equals(zones[2])) {
-                listSw[nn3] = visits[i].aboniment.people.surname + " " + visits[i].aboniment.people.name;
-                nn3++;
+
+            int n1 = 0;
+            int n2 = 0;
+            int n3 = 0;
+
+            for (int j = 0; j < visits[i].length; j++) {
+                if (visits[i][j].nn > 0 && visits[i][j].zone.equals(zones[0])) {
+                    listGym[i][nn1[i]] = visits[i][j].aboniment.people.surname + " " + visits[i][j].aboniment.people.name;
+                    n1++;
+                } else if (visits[i][j].nn > 0 && visits[i][j].zone.equals(zones[1])) {
+                    listGr[nn2] = visits[i][j].aboniment.people.surname + " " + visits[i][j].aboniment.people.name;
+                    n2++;
+                } else if (visits[i][j].nn > 0 && visits[i][j].zone.equals(zones[2])) {
+                    listSw[nn3] = visits[i][j].aboniment.people.surname + " " + visits[i][j].aboniment.people.name;
+                    n3++;
+                }
             }
 
         }
@@ -117,7 +138,7 @@ public class Main {
 
         System.out.println("Посетители тренажерного зала: " + Arrays.toString(listGym));
         System.out.println("Посетители бассеина: " + Arrays.toString(listSw));
-        System.out.println("Посетители групповых занятий: " + Arrays.toString(listGr));
+        System.out.println("Посетители групповых занятий: " + Arrays.toString(listGr));*/
 
     }
 }

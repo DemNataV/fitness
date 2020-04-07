@@ -25,7 +25,9 @@ public class Club{
 
     String[] types = {"Полный/Месячный", "Дневной", "Разовый"};
 
-    public void visitClub (Visit visit){
+    public void visitClub (Visit visit, Counter count){
+
+
 
         LocalDateTime visitDateTime = LocalDateTime.of(visit.visitDate, visit.visitTime);
         System.out.println(visit.aboniment.toString() + " хочет пройти в " + visit.zone + " " + visit.visitDate + " в " + visit.visitTime);
@@ -33,13 +35,13 @@ public class Club{
         if (visit.aboniment.type.equalsIgnoreCase(types[0]) || visit.aboniment.type.equalsIgnoreCase(types[1])) {
 
             if (visit.visitDate.isAfter(visit.aboniment.start) && visit.visitDate.isBefore(visit.aboniment.end)) {
-                visit.visitZone(visit.aboniment, visit);
+                visit.visitZone(visit.aboniment, visit, count);
             } else {
-                System.out.println("Срок действия абонемента истек или не начал действовать");
+                System.out.println("Срок действия абонимента истек или не начал действовать");
             }
         } else if (visit.aboniment.type.equalsIgnoreCase(types[2])) {
             if (visit.aboniment.n > 0) {
-                visit.visitZone(visit.aboniment, visit);
+                visit.visitZone(visit.aboniment, visit, count);
                 //visit.aboniment.n--;
             }
             else System.out.println("Разовый абонимент истек");

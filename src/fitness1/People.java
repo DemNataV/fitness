@@ -1,4 +1,4 @@
-package fitness;
+package fitness1;
 
 import java.time.LocalDate;
 
