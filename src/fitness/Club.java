@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 
 public class Club{
 
-    Aboniment[] aboniments = new Aboniment[20];
+    Aboniment[] aboniments = new Aboniment[100];
     //String name;
 
     public void addAboniments(Aboniment... newAboniments) {

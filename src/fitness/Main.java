@@ -11,7 +11,11 @@ public class Main {
         //LocalDateTime startPeriod = LocalDateTime.of(2018, Month.JUNE, 10, 00, 00);
         //LocalDateTime endPeriod = LocalDateTime.of(2018, Month.OCTOBER, 20, 00, 00);
 
-        People people1 = new People("Анна", "Первая");
+        String[] name = {"Анна", "Николай", "Петр", "Адольф", "Андрей", "Василиса", "Антон", "Анастасия", "Дарья"};
+        String[] surname = {"Первая", "Третий", "Четвертый", "Пятая", "Шестой", "Седьмая", "Восьмой", "Девятая", "Десятая",
+                "Одинадцатая", "Двенадцатый", "Тринадцатый", "Тринадцатый", "Пятнадцатая", "Шестнадцатый", "Семнадцатая", "Восемнадцатый"};
+
+        /*People people1 = new People("Анна", "Первая");
         People people2 = new People("Николай", "Второй");
         People people3 = new People("Петр", "Третий");
         People people4 = new People("Адольф", "Четвертый");
@@ -33,15 +37,20 @@ public class Main {
         People people19 = new People("Анастасия", "Девятнадцатая");
         People people20 = new People("Дарья", "Двадцатая");
 
-
         People[] people = {people1, people2, people3, people4, people5,
                 people6, people7, people8, people9, people10,
                 people11, people12, people13, people14, people15,
-                people16, people17, people18, people19, people20};
+                people16, people17, people18, people19, people20};*/
+
+        People[] people = new People[100];
+        for (int i = 0; i < people.length ; i++) {
+            people[i] = new People(name[(int)(Math.random()*name.length)], surname[(int)(Math.random()*surname.length)]);
+        }
+
         String[] types = {"Полный/Месячный", "Дневной", "Разовый"};
         String[] zones = {"тренажерный зал", "групповые занятия", "бассейн"};
 
-        Aboniment[] aboniments = new Aboniment[20];
+        Aboniment[] aboniments = new Aboniment[people.length];
 
 
 
